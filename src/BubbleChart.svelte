@@ -88,15 +88,13 @@
    $: {
     if (step == 0) {
 		/*setTween(tweenedR, "expenses")*/;
-		let valueKey = "approved";
-	  	console.log("heeey")
+		valueKey = "approved";}
     if (step == 1) {
 		/*setTween(tweenedR, "approved")*/;
-		let valueKey = "expenses";
-		console.log("hooo")
+		valueKey = "expenses";
     }
   }
-}
+
 
   let parent = {};
   $: dataset = $data;
