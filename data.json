@@ -1,0 +1,44 @@
+{
+    "data": [
+      {
+        "country": "Duitsland",
+        "expenses": 2764
+      },
+      {
+        "country": "Frankrijk",
+        "expenses": 791
+      },
+      {
+        "country": "Polen",
+        "expenses": 73
+      },
+      {
+        "country": "Spanje",
+        "expenses": 327
+      },
+      {
+        "country": "België",
+        "expenses": 358
+      },
+      {
+        "country": "Griekenland",
+        "expenses": 159
+      },
+      {
+        "country": "Nederland",
+        "expenses": 371
+      },
+      {
+        "country": "Finland",
+        "expenses": 168
+      },
+      {
+        "country": "Luxemburg",
+        "expenses": 18
+      },
+      {
+        "country": "Slowakije",
+        "expenses": 30
+      }
+    ]
+  }
