@@ -56,54 +56,57 @@
 	/** @type {Number} [spacing=0] - Whitespace padding between each circle, in pixels. */
 	export let spacing = 0;
 
-  /*	const tweenOptions = {
+
+
+    let dataset = $data;
+
+	/* TWEEN */
+
+    const tweenOptions = {
     delay: 0,
     duration: 1000,
     easing: cubicOut,
      };
 
+	 /* https://sole.github.io/tween.js/examples/03_graphs.html */
+
     
     const tweenedR = tweened(
-    $data.map((d) => d[valueKey]),
-    tweenOptions
+		dataset.map((d) => d[valueKey]),
+    	tweenOptions
      );
 
-    console.log(tweenedR)
+    
 
     function setTween(dimension, key) {
-    dimension.set($data.map((d) => +d[key]));
-    } */
+    dimension.set(dataset.map((d) => +d[key]));
+    }
+
+	$: {
+		if (step == 0) {
+			setTween(tweenedR, "approved");
+			valueKey = "approved";}
+		if (step == 1) {
+			setTween(tweenedR, "expenses");
+			valueKey = "expenses";
+		}
+	}
 
   /* --------------------------------------------
+   * CIRCLE PACK
    * This component will automatically group your data
    * into one group if no `parentKey` was passed in.
    * Stash $data here so we can add our own parent
    * if there's no `parentKey`
    */
 
+	let parent = {};
+	
 
-	$: console.log(step)
-	$: console.log(valueKey)
-  
-   $: {
-    if (step == 0) {
-		/*setTween(tweenedR, "expenses")*/;
-		valueKey = "approved";}
-    if (step == 1) {
-		/*setTween(tweenedR, "approved")*/;
-		valueKey = "expenses";
-    }
-  }
-
-
-  let parent = {};
-  $: dataset = $data;
-
-  $: if (parentKey === undefined) {
-    parent = { [idKey]: 'all' };
-    dataset = [...dataset, parent]
-  }
-
+	$: if (parentKey === undefined) {
+		parent = { [idKey]: 'all' };
+		dataset = [...dataset, parent]
+	}
 
 	$: stratifier = stratify()
 		.id(d => d[idKey])
@@ -128,12 +131,9 @@
 
   	$: descendants = packed.descendants();
 
-  /* $: tweenedData = descendants.map((d, index) => ({
-    r: $tweenedR[index]
-  })); 
 	$: descendants.forEach(d => {
 	console.log(d);
-  }); */
+  });
 
 
 
@@ -142,7 +142,7 @@
 </script>
 
 <div class="circle-pack" data-has-parent-key="{parentKey !== undefined}">
-	{#each descendants as d}
+	{#each descendants as d, index}
 		<div
       class="circle-group"
       data-id="{d.data.id}"

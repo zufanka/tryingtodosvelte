@@ -17,7 +17,12 @@
 
 	/* convert all the values into a number */
 	data.forEach(d => {
-		d[valueKey] = +d[valueKey];
+		d["expenses"] = +d["expenses"];
+		/* console.log(d[valueKey], +d[valueKey])*/
+	});
+
+	data.forEach(d => {
+		d["approved"] = +d["approved"];
 		/* console.log(d[valueKey], +d[valueKey])*/
 	});
 	
